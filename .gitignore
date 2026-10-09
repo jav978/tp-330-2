@@ -1,0 +1,29 @@
+# Binarios generados por el compilador
+*.exe
+*.obj
+*.o
+*.so
+*.dll
+*.pdb
+*.ilk
+*.mod
+
+# Archivos de datos generados en tiempo de ejecucion
+*.DAT
+!MAESTRO-PROD.DAT.sample
+!PROVEEDORES.DAT.sample
+
+# Archivos temporales de Word (~$ y ~WRLnnnn.tmp)
+~$*
+~WRL*.tmp
+
+# Material de la asignatura y entregables (no forman parte del codigo)
+*.pdf
+*.docx
+
+# Sistema operativo y editores
+Thumbs.db
+desktop.ini
+.DS_Store
+*.swp
+.vscode/
