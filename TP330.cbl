@@ -90,7 +90,12 @@
            05 WS-ID-PRODUCTO        PIC 9(05).
            05 WS-NOMBRE-PRODUCTO    PIC X(20).
            05 WS-STOCK-ACTUAL       PIC 9(04).
+           05 WS-PRECIO-TXT         PIC X(06).
+      *    WS-PRECIO-CHAR comparte el mismo almacenamiento que
+      *    WS-PRECIO-UNITARIO (REDEFINES): los 6 digitos capturados
+      *    se alinean de forma que los ultimos 2 son los decimales.
            05 WS-PRECIO-UNITARIO    PIC 9(04)V99.
+           05 WS-PRECIO-CHAR REDEFINES WS-PRECIO-UNITARIO PIC 9(06).
 
       * Estructura de trabajo para capturar los datos de un proveedor
        01  WS-REG-PROVEEDOR.
@@ -183,13 +188,13 @@
                PERFORM 400-PREGUNTAR-CONTINUA
            END-PERFORM
            CLOSE MAESTRO-PRODFI
-           DISPLAY "ARCHIVO MAESTRO-PROD.DAT CREADO EXITOSAMENTE."
+           DISPLAY "ARCHIVO MAESTRO-PROD.DAT CREADO EXITOSAMENTE".
 
       *----------------------------------------------------------------*
       * 210-LEER-DATOS-PRODUCTO: captura por teclado los datos del     *
       * producto y los almacena en la estructura de WORKING-STORAGE.   *
       * Nota: el PRECIO se ingresa con 6 digitos SIN punto decimal;    *
-      * los ultimos 2 digitos son los decimales (ej: 00125050=1250.50).*
+      * los ultimos 2 digitos son los decimales (ej: 125050=1250.50).*
       *----------------------------------------------------------------*
        210-LEER-DATOS-PRODUCTO.
            DISPLAY "------ NUEVO REGISTRO DE PRODUCTO ------"
@@ -199,10 +204,14 @@
            ACCEPT WS-NOMBRE-PRODUCTO
            DISPLAY "INGRESE STOCK ACTUAL (4 DIGITOS): "
            ACCEPT WS-STOCK-ACTUAL
-           DISPLAY "NOTA: ESCRIBA 6 DIGITOS, LOS ULTIMOS 2 SON"
-           DISPLAY "DECIMALES. EJEMPLO: 00125050 EQUIVALE A 1250.50"
+           DISPLAY "NOTA: ESCRIBA 6 DIGITOS SIN PUNTO; LOS ULTIMOS"
+           DISPLAY "2 SON DECIMALES (EJ: 125050 = 1250.50)"
            DISPLAY "INGRESE PRECIO UNITARIO (6 DIGITOS): "
-           ACCEPT WS-PRECIO-UNITARIO.
+           ACCEPT WS-PRECIO-TXT
+      *    La captura (X(06)) se transfiere al area compartida con
+      *    WS-PRECIO-UNITARIO via REDEFINES, de modo que el valor
+      *    queda con 4 digitos enteros y 2 decimales.
+           MOVE WS-PRECIO-TXT TO WS-PRECIO-CHAR.
 
       *----------------------------------------------------------------*
       * 220-ESCRIBIR-PRODUCTO: transfiere el registro desde WORKING-   *
@@ -249,7 +258,7 @@
                PERFORM 400-PREGUNTAR-CONTINUA
            END-PERFORM
            CLOSE PROVEEDORES
-           DISPLAY "ARCHIVO PROVEEDORES.DAT CREADO EXITOSAMENTE."
+           DISPLAY "ARCHIVO PROVEEDORES.DAT CREADO EXITOSAMENTE".
 
       *----------------------------------------------------------------*
       * 310-LEER-DATOS-PROVEEDOR: captura por teclado los datos del    *
