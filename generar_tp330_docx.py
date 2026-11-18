@@ -111,7 +111,7 @@ p("Cédula de Identidad: V-14.645.240", size=12)
 p("E-mail: jvasquez978@gmail.com", size=12)
 p("Telf. 04269217118", size=12)
 p("Fecha de entrega: 21-11-2026", size=12)
-p("Evaluador: M.Sc. Yrabel Estrada", size=12)
+p("Profesor: José Plazas", size=12)
 for _ in range(3):
     p()
 p("RESULTADOS DE LA CORRECCIÓN", bold=True, align="c", size=12)
@@ -523,21 +523,25 @@ def apa(segments):
     par.paragraph_format.space_after = Pt(6)
 
 
+apa([("Goodrich, M. T., Tamassia, R., y Mount, D. M. (2011). ", False),
+     ("Data structures and algorithms in C++", True),
+     (" (2.ª ed.). Wiley.", False)])
+apa([("Joyanes Aguilar, L. (1998). ", False),
+     ("Fundamentos de programación", True),
+     (". McGraw-Hill.", False)])
+apa([("Lafore, R. (2002). ", False),
+     ("Data structures and algorithms in Java", True),
+     (" (2.ª ed.). Sams Publishing.", False)])
+apa([("Loomis, M. E. S. (1991). ", False),
+     ("Estructura de datos y organización de archivos", True),
+     (" (2.ª ed.). Prentice Hall.", False)])
 apa([("Universidad Nacional Abierta. (s. f.). ", False),
-     ("Material instruccional de apoyo: Procesamiento de datos", True),
-     (" (Código 330, Ingeniería de Sistemas, Semestre IV). Universidad "
-      "Nacional Abierta.", False)])
-apa([("Universidad Nacional Abierta. (2026). ", False),
-     ("Instructivo del Trabajo Práctico: Procesamiento de datos", True),
-     (" (Código 330), lapso 2026-2. Universidad Nacional Abierta.", False)])
-apa([("Stern, N. y Stern, R. (2006). ", False), ("COBOL", True),
-     (" (2.ª ed.). Pearson Educación.", False)])
-apa([("Free Software Foundation. (s. f.). ", False),
-     ("GnuCOBOL programmer's guide", True),
-     (". https://gnucobol.sourceforge.io/doc/gnucobol.html", False)])
-apa([("OpenCobolIDE. (s. f.). ", False),
-     ("OpenCobolIDE: COBOL integrated development environment", True),
-     (". GitHub. https://github.com/OpenCobolIDE/OpenCobolIDE", False)])
+     ("Material instruccional de apoyo. Asignatura: Procesamiento de "
+      "datos", True),
+     (" (Cód. 330). UNA.", False)])
+apa([("Weiss, M. A. (2014). ", False),
+     ("Data structures and algorithm analysis in C++", True),
+     (" (4.ª ed.). Pearson Education.", False)])
 
 # ---------- guardar ----------
 nombre = "330_TP_14645240_2026-2.docx"
