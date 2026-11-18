@@ -481,6 +481,49 @@ p(
     align="j",
 )
 
+# ================= 8. ANEXO REPOSITORIO GIT =================
+heading("8. Anexo: Repositorio del proyecto en Git", 1)
+p(
+    "Todo el material de este trabajo se encuentra versionado en un repositorio "
+    "público de GitHub, utilizado como sistema de control de versiones durante el "
+    "desarrollo. En él el evaluador puede consultar el historial completo de "
+    "cambios (commits), el código fuente definitivo y la evolución del proyecto:",
+    align="j",
+)
+p("https://github.com/jav978/tp-330-2")
+tabla_datos([
+    ["Archivo", "Descripción"],
+    ["TP330.cbl", "Programa fuente principal (creación de archivos indexados)"],
+    ["LEER330.cbl", "Programa de verificación: lee y muestra los registros grabados"],
+    ["generar_tp330_docx.py", "Script que genera este informe en Word"],
+    ["330_TP_14645240_2026-2.docx", "Entregable del Trabajo Práctico"],
+], anchos=[5.5, 10.5])
+p(
+    "Cada confirmación (commit) incluye un mensaje descriptivo del cambio "
+    "realizado, lo que permite evidenciar el proceso de depuración seguido: "
+    "corrección de la organización del archivo a indexada, ajuste del lapso, "
+    "captura del precio con el patrón REDEFINES y pruebas de ejecución con "
+    "GnuCOBOL.",
+    align="j",
+)
+
+# ================= 9. REFERENCIAS =================
+heading("9. Referencias bibliográficas", 1)
+for ref in [
+    "Universidad Nacional Abierta. (2026). Instructivo del Trabajo Práctico, "
+    "asignatura Procesamiento de Datos (Cód. 330), lapso 2026-2. Caracas: UNA, "
+    "Vicerrectorado Académico.",
+    "Stern, N. y Stern, R. (2006). COBOL (2ª ed.). México: Pearson Educación.",
+    "Free Software Foundation. (2019). GnuCOBOL Programmer's Guide. Recuperado "
+    "de https://gnucobol.sourceforge.io/doc/gnucobol.html",
+    "OpenCobolIDE. (2016). OpenCobolIDE: Integrated Development Environment for "
+    "COBOL. Recuperado de https://github.com/OpenCobolIDE/OpenCobolIDE",
+]:
+    par = doc.add_paragraph(ref)
+    par.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+    par.paragraph_format.first_line_indent = Cm(-0.75)
+    par.paragraph_format.left_indent = Cm(0.75)
+
 # ---------- guardar ----------
 nombre = "330_TP_14645240_2026-2.docx"
 doc.save(nombre)
