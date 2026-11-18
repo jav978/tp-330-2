@@ -509,20 +509,35 @@ p(
 
 # ================= 9. REFERENCIAS =================
 heading("9. Referencias bibliográficas", 1)
-for ref in [
-    "Universidad Nacional Abierta. (2026). Instructivo del Trabajo Práctico, "
-    "asignatura Procesamiento de Datos (Cód. 330), lapso 2026-2. Caracas: UNA, "
-    "Vicerrectorado Académico.",
-    "Stern, N. y Stern, R. (2006). COBOL (2ª ed.). México: Pearson Educación.",
-    "Free Software Foundation. (2019). GnuCOBOL Programmer's Guide. Recuperado "
-    "de https://gnucobol.sourceforge.io/doc/gnucobol.html",
-    "OpenCobolIDE. (2016). OpenCobolIDE: Integrated Development Environment for "
-    "COBOL. Recuperado de https://github.com/OpenCobolIDE/OpenCobolIDE",
-]:
-    par = doc.add_paragraph(ref)
+
+
+def apa(segments):
+    """Referencia en formato APA 7: sangria francesa y cursivas."""
+    par = doc.add_paragraph()
+    for texto, cursiva in segments:
+        r = par.add_run(texto)
+        r.italic = cursiva
     par.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     par.paragraph_format.first_line_indent = Cm(-0.75)
     par.paragraph_format.left_indent = Cm(0.75)
+    par.paragraph_format.space_after = Pt(6)
+
+
+apa([("Universidad Nacional Abierta. (s. f.). ", False),
+     ("Material instruccional de apoyo: Procesamiento de datos", True),
+     (" (Código 330, Ingeniería de Sistemas, Semestre IV). Universidad "
+      "Nacional Abierta.", False)])
+apa([("Universidad Nacional Abierta. (2026). ", False),
+     ("Instructivo del Trabajo Práctico: Procesamiento de datos", True),
+     (" (Código 330), lapso 2026-2. Universidad Nacional Abierta.", False)])
+apa([("Stern, N. y Stern, R. (2006). ", False), ("COBOL", True),
+     (" (2.ª ed.). Pearson Educación.", False)])
+apa([("Free Software Foundation. (s. f.). ", False),
+     ("GnuCOBOL programmer's guide", True),
+     (". https://gnucobol.sourceforge.io/doc/gnucobol.html", False)])
+apa([("OpenCobolIDE. (s. f.). ", False),
+     ("OpenCobolIDE: COBOL integrated development environment", True),
+     (". GitHub. https://github.com/OpenCobolIDE/OpenCobolIDE", False)])
 
 # ---------- guardar ----------
 nombre = "330_TP_14645240_2026-2.docx"
